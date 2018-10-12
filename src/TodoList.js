@@ -1,4 +1,6 @@
 import React, { Component, Fragment } from 'react';
+import './style.css';
+import TodoItem from './TodoItem';
 
 class TodoList extends Component {
 
@@ -35,7 +37,13 @@ class TodoList extends Component {
 		return (
 			<Fragment>
 				<div>
-					<input 
+					{
+						//label标签加属性htmlFor,htmlFor属性值为输入框的id，那么点击label，光标会聚焦到input标签里
+					}
+					<label htmlFor={'insertArea'}>输入内容</label>
+					<input
+						id='insertArea' 
+						className='input'
 						value={this.state.inputValue} 
 						onChange={this.handleInputChange.bind(this)}
 					/>
@@ -45,10 +53,19 @@ class TodoList extends Component {
 					{	
 						this.state.list.map((item, index) => {
 							return (
-								<li key={index} onClick={this.handleItemDelete.bind(this, index)}>{item}</li>
+								<div>
+									<TodoItem content={item}
+										index={index}
+										deleteItem={this.handleItemDelete.bind(this)}/>
+								</div>
 							)
 						})
 					}
+					{/*如果希望输入的h5标签解析，这用属性dangerousSetInnerHTML*/}
+					{/*<li key={index}
+						onClick={this.handleItemDelete.bind(this, index)}
+						dangerouslySetInnerHTML={{__html: item}}>
+					</li>*/}
 				</ul>
 			</Fragment>
 		)
