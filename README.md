@@ -65,7 +65,7 @@
 	4.2、子组件访问父组件的数据或者方法，通过props完成，注意调用父组件的方法时，父组件传递方法的时候就绑定好this
 		子组件<TodoItem />接收传值，： this.props.content
 
-##5、优化代码，代码规范的几点
+## 5、优化代码，代码规范的几点
 	5.1、this.handleItemDelete = this.handleItemDelete.bind(this);
 	声明在构造函数constructor()中，后面的代码直接调用this.handleItemDelete
 
