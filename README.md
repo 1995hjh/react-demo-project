@@ -31,9 +31,25 @@
 ## 4、react的组件与组件之间的传值
 	4.1、父组件向子组件传值,通过标签上的属性完成，既可以传递数据，也可以传递方法
 		父组件<TodoList />引用<TodoItem />： <TodoItem content={'传递给子组件的内容'}>
-		
+
 	4.2、子组件访问父组件的数据或者方法，通过props完成，注意调用父组件的方法时，父组件传递方法的时候就绑定好this
 		子组件<TodoItem />接收传值，： this.props.content
+
+##5、优化代码，代码规范的几点
+	5.1、this.handleItemDelete = this.handleItemDelete.bind(this);声明在构造函数constructor()中，后面的代码直接调用this.handleItemDelete
+
+	5.2、更新state值
+	不是直接赋值，而是采用() => {return ...}函数的形式；
+	() => {return ...} 简写为 () => ({}),大括号外面的()代表return；
+	所以综合为：
+	const value = e.target.value; //注意，当设置变量不能识别时，需要将变量在外面先赋值在使用
+	this.setState((prevState) => ({})); //接收一个参数prevState，代表state原本存储的内容
+	this.setState((prevState) => ({
+		inputValue: value,
+		list: [...prevState.list, prevState.inputValue]
+	}));
+
+
 
 
 	

@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import './style.css';
 import TodoItem from './TodoItem';
+import './style.css';
 
 class TodoList extends Component {
 
@@ -10,27 +10,43 @@ class TodoList extends Component {
 			inputValue: '',
 			list: []
 		};
+		this.handleInputChange = this.handleInputChange.bind(this);
+		this.handleBtnClick = this.handleBtnClick.bind(this);
+		this.handleItemDelete = this.handleItemDelete.bind(this);
 	}
 
 	handleInputChange(e) {
-		this.setState({
-			inputValue: e.target.value
-		});
+		const value = e.target.value;
+		this.setState(() => ({
+			inputValue: value
+		}));
 	}
 
 	handleBtnClick = () => {
-		this.setState({
-			list: [...this.state.list, this.state.inputValue],
+		this.setState((prevState) => ({
+			list: [...prevState.list, prevState.inputValue],
 			inputValue: ''
-		});
+		}));
 	}
 
 	handleItemDelete(index) {
-		let list = [...this.state.list];
-		list.splice(index, 1);
-		this.setState({
-			list: list
+		this.setState((prevState) => {
+			let list = [...prevState.list];
+			list.splice(index, 1);
+			return {list}
 		});
+	}
+
+	getTodoItem() {
+		return this.state.list.map((item, index) => {
+			return (
+				<TodoItem
+					key={index}
+					content={item}
+					index={index}
+					deleteItem={this.handleItemDelete}/>
+			)
+		})
 	}
 
 	render() {
@@ -45,22 +61,12 @@ class TodoList extends Component {
 						id='insertArea' 
 						className='input'
 						value={this.state.inputValue} 
-						onChange={this.handleInputChange.bind(this)}
+						onChange={this.handleInputChange}
 					/>
-					<button onClick={this.handleBtnClick.bind(this)}>提交</button>
+					<button onClick={this.handleBtnClick}>提交</button>
 				</div>
 				<ul>
-					{	
-						this.state.list.map((item, index) => {
-							return (
-								<div>
-									<TodoItem content={item}
-										index={index}
-										deleteItem={this.handleItemDelete.bind(this)}/>
-								</div>
-							)
-						})
-					}
+					{this.getTodoItem()}
 					{/*如果希望输入的h5标签解析，这用属性dangerousSetInnerHTML*/}
 					{/*<li key={index}
 						onClick={this.handleItemDelete.bind(this, index)}
