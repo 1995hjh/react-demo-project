@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import TodoItem from './TodoItem';
-import Test from './Test';
+import axios from 'axios';
 import './style.css';
 
 class TodoList extends Component {
@@ -14,6 +14,16 @@ class TodoList extends Component {
 		this.handleInputChange = this.handleInputChange.bind(this);
 		this.handleBtnClick = this.handleBtnClick.bind(this);
 		this.handleItemDelete = this.handleItemDelete.bind(this);
+	}
+
+	componentDidMount() {
+		axios.get('/api/todolist').then(
+			() => {
+				alert('react');
+			}
+		).catch(() => {
+			alert('error');
+		});
 	}
 
 	handleInputChange(e) {
@@ -74,7 +84,6 @@ class TodoList extends Component {
 						dangerouslySetInnerHTML={{__html: item}}>
 					</li>*/}
 				</ul>
-				<Test content={this.state.inputValue}/>
 			</Fragment>
 		)
 	};

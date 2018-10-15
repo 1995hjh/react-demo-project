@@ -16,30 +16,36 @@ class TodoItem extends Component {
         deleteItem(index);
     }
 
+    //当父组件被更新时，子组件不需要被更新时，则使用shouldComponentUpdate,提升性能
+    shouldComponentUpdate(nextProps, nextState){
+        if (nextProps.content !== this.props.content) {
+            return true;
+        }
+        return false;
+    }
+
     render() {
         const {
-            content,
-            index,
-            text
+            content
         } = this.props;
         return (
-            <div onClick={this.handleClick}
-                key={index}>
-                {text}-{content}
+            <div onClick={this.handleClick}>
+                {content}
             </div>
         )
     }
 }
 
 TodoItem.propTypes = {
-    content: PropTypes.string,
+    content: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     deleteItem: PropTypes.func,
     index: PropTypes.number,
-    text: PropTypes.string.isRequired
+    /*text: PropTypes.string.isRequired*/
 }
-
+/*
 TodoItem.defaultProps = {
     text: 'hello world'
 };
+*/
 
 export default TodoItem;

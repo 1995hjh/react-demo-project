@@ -34,7 +34,7 @@
 		2、JSX模板；
 		3、数据 + 模板 结合 生成虚拟的DOM(虚拟dom就是一个js对象，用它来描述真实的dom)；//用js生成一个js对象，性能损耗较小，而生成dom对象损耗较大
 		4、用虚拟的DOM生成真实的dom对象来显示；
-		5、state发生变化；//props底层也是state发生变化
+		5、state发生变化；//props底层也是state发生变化，state改变是异步操作，优势是当很短时间内连续几次更新state值时，会合并成一次state的改变，只会进行一次虚拟dom的比对，提升性能
 		6、数据 + 模板 生成新的虚拟DOM；//极大的提高了性能
 		7、比较原始虚拟DOM和新的虚拟DOM的区别；//极大的提高了性能，比较的算法称为diff算法
 		8、直接操作DOM，改变相应的内容；
@@ -79,6 +79,40 @@
 		inputValue: value,
 		list: [...prevState.list, prevState.inputValue]
 	}));
+
+	5.3、对于循环，设置不一样的key值，加快虚拟dom的比对，提升性能
+
+	5.4、借助shouldComponentUpdate()方法提升组件的性能
+
+## 6.react的生命周期函数
+	生命周期函数指在某一个时刻，组件会自动调用执行的函数
+	initialization【初始化】 ---> mounting【挂载】--> updation【更新】--> unMounting
+
+	1、initialization:
+		1.1、constructor();
+
+	2、mounting:
+		2.1、componentWillMount(): 在组件即将被挂载在页面的时候自动执行
+	    2.2、render():
+		2.3、componentDidMount(): 在组件被挂载到页面之后，自动被执行
+
+	3、updation:
+		3.1、props发生变化：
+			3.1.1、componentWillReceiveProps();当一个组件从父组件接收参数，只要父组件的render函数重新被执行，如果这个组件第一次存在于父组件中，不会执行；如果这个组件已经存在于父组件中，componentWillReceiveProps()才会被执行
+			3.1.2、shouldComponentUpdate():组件被更新之前，会自动调用
+			3.1.3、componentWillUpdate();
+			3.1.4、render();
+			3.1.5、componentDidUpdate();
+
+		3.2、state发生变化：
+			3.2.1、shouldComponentUpdate():组件被更新之前，会自动调用,返回true才会继续，返回false，则终止后面的生命周期函数
+			3.2.2、componentWillUpdate():组件被更新之前，他会自动调用，但是他是在shouldComponentUpdate()之后执行，是否执行取决于shouldComponentUpdate()的返回值
+		 	3.3.3、render();
+			3.3.4、componentDidUpdate()
+			
+	4、unMount:
+		4.1 componentWillUnmount()：当一个组件即将被从页面移除的时候会被调用
+
 
 
 
