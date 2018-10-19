@@ -113,6 +113,16 @@
 	4、unMount:
 		4.1 componentWillUnmount()：当一个组件即将被从页面移除的时候会被调用
 
+## 7.react中动画的使用
+	1.过渡动画效果：
+		使用css样式 transition:all 3s ease-in;
+
+	2.css动画效果：
+		借助@keyframes,这里注意调用动画时，为了保存动画最后一帧的样式，在样式最后加forwards关键字
+
+	3.使用动画组件react-transition-group实现动画
+
+
 
 
 
