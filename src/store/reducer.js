@@ -13,7 +13,7 @@ export default (state = defaultState, action) => {
         newState.list.push(newState.inputValue);
         newState.inputValue = '';
     } else if (action.type === DELETE_ITEM_VALUE) {
-        newState.list.splice(action.value, 1);
+        newState.list.splice(action.index, 1);
     }
     return newState;
 }
