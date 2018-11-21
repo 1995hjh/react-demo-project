@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import store from './store';
 import * as actions from './store/actionCreators';
 import TodoListUI from './TodoListUI';

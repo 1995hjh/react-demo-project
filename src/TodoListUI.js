@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import 'antd/dist/antd.css';
 import { Input, Button, List } from 'antd';
-
 
 const TodoListUI = (props) => {
      const {
@@ -13,7 +12,7 @@ const TodoListUI = (props) => {
     } = props;
 
     return (
-        <div style={{marginTop: 10, marginLeft: 10}}>
+        <div style={{ marginTop: 10, marginLeft: 10}}>
             <Input placeholder='todo infor'
                 value={inputValue}
                 style={{width: 300, marginRight: 10}}
@@ -24,7 +23,7 @@ const TodoListUI = (props) => {
                 bordered
                 dataSource={list}
                 renderItem={(item, index) => (<List.Item onClick={() => {handleItemClick(index)}}>{item}</List.Item>)}
-            />
+            /> 
         </div>
     );
 }
