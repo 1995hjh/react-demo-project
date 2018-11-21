@@ -1,9 +1,13 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Input, Button, List } from 'antd';
+import {
+    Input,
+    Button,
+    List
+} from 'antd';
 
 const TodoListUI = (props) => {
-     const {
+    const {
         inputValue,
         handleInputChange,
         handleBtnClick,

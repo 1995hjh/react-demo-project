@@ -4,7 +4,6 @@ import React, {
 import store from './store';
 import * as actions from './store/actionCreators';
 import TodoListUI from './TodoListUI';
-import axios from 'axios';
 
 class TodoList extends Component {
 
@@ -19,11 +18,8 @@ class TodoList extends Component {
 	}
 
 	componentDidMount() {
-		axios.get('./list.json').then((res) => {
-			const data = res.data;
-			const action = actions.initListAction(data);
-			store.dispatch(action);
-		});
+		const action = actions.getTodoList();
+		store.dispatch(action);
 	}
 
 	handleInputChange(e) {

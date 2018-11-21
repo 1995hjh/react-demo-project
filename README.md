@@ -4,6 +4,7 @@
 	利用官方脚手架---create-react-app
 	创建：create-react-app Demo
 	进入项目： cd Demo
+	安装： npm install
 	运行： yarn start
 
 ## 2、react
