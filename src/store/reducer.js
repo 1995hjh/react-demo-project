@@ -1,4 +1,9 @@
-import {CHANGE_INPUT_VALUE, ADD_LIST_VALUE, DELETE_ITEM_VALUE} from './actionTypes';
+import {
+    CHANGE_INPUT_VALUE,
+    ADD_LIST_VALUE,
+    DELETE_ITEM_VALUE,
+    INIT_LIST_ACTION
+} from './actionTypes';
 const defaultState = {
     inputValue: '',
     list: []
@@ -14,6 +19,8 @@ export default (state = defaultState, action) => {
         newState.inputValue = '';
     } else if (action.type === DELETE_ITEM_VALUE) {
         newState.list.splice(action.index, 1);
+    } else if (action.type === INIT_LIST_ACTION) {
+        newState.list = action.data;
     }
     return newState;
 }
