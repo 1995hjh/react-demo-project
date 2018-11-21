@@ -131,6 +131,11 @@
 	3.reducer必须是纯函数
 		纯函数指的是，给定固定的输入，就一定会有固定的输出，而且不会有任何副作用
 
+## 9.redux-thunk中间件
+	redux-thunk中间件指的是存在于action和store的中间件，原本action只能是一个对象，通过store.dispatch(action)传递给store；有了中间件，action可以是一个函数，执行store.dispatch(action)以后，先执行函数，然后在调用store；
+	也就是redux-thunk对store.dispatch(action)进行了封装，如果action是对象直接传递给store，如果是函数，先执行函数再传递给store
+
+	中间件除了redux-thunk，还有redux-saga等
 
 
 
