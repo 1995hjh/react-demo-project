@@ -18,7 +18,7 @@ class TodoList extends Component {
 	}
 
 	componentDidMount() {
-		const action = actions.getTodoList();
+		const action = actions.getInitAction();
 		store.dispatch(action);
 	}
 
